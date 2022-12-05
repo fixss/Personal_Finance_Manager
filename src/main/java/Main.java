@@ -9,13 +9,11 @@ public class Main {
         CategoriesСalculation categoriesСalculation = new CategoriesСalculation();
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
             while (true) {
-            try (Socket clientSocket = serverSocket.accept();
-                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))){
-                 System.out.println("Connection accepted");
-                categoriesСalculation.addToBasket(in);
-                out.println("{\"maxCategory\": " + categoriesСalculation.loadFromTSV(new File("categories.tsv")) + " }");
-            }
+                try (Socket clientSocket = serverSocket.accept(); PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true); BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
+                    System.out.println("Connection accepted");
+                    categoriesСalculation.addToBasket(in);
+                    out.println("{\"maxCategory\": " + categoriesСalculation.loadFromTSV(new File("categories.tsv")) + " }");
+                }
             }
         } catch (IOException e) {
             System.out.println("Server have some problems");

@@ -9,9 +9,7 @@ public class Client {
     private static final String HOST = "localhost";
 
     public static void main(String[] args) {
-        try (Socket clientSocket = new Socket(HOST, SERVICE_PORT);
-             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
+        try (Socket clientSocket = new Socket(HOST, SERVICE_PORT); PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true); BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
             String jsonText = "{\"title\": \"тапочки\", \"date\": \"2022.02.08\", \"sum\": 500}";
             out.println(jsonText);
             System.out.println(in.readLine());
