@@ -26,9 +26,7 @@ public class CategoriesСalculation {
 
         List<String[]> categories = new ArrayList<>();
         Map<String, Integer> postServer = new HashMap<>();
-        categories = Files.lines(file.toPath())
-                .map(line -> line.split("\t"))
-                .collect(Collectors.toList());
+        categories = Files.lines(file.toPath()).map(line -> line.split("\t")).collect(Collectors.toList());
         Map<String, String> resultsMap = new HashMap<>();
         for (String[] s : categories) {
             resultsMap.put(s[0], s[1]);
@@ -54,8 +52,7 @@ public class CategoriesСalculation {
                 }
             }
         }
-        String maxFinCategory = Collections.max(postServer.entrySet(),
-                Comparator.comparingInt(Map.Entry::getValue)).getKey();
+        String maxFinCategory = Collections.max(postServer.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
         int maxFinSum = postServer.get(maxFinCategory);
         JSONObject jsonMaxSum = new JSONObject();
         jsonMaxSum.put("categories", maxFinCategory);
